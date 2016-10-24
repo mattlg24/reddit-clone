@@ -10,7 +10,16 @@ app.controller('MainController', ['$scope', function($scope) {
         console.log('post info', post);
         $scope.posts.push($scope.post)
         $scope.post = ''
+    }
 
+    $scope.votes = '0'
+    $scope.downVote = function() {
+        console.log('I was voted down');
+        $scope.votes--
+    }
 
+    $scope.upVote = function() {
+        console.log('I was voted up');
+        $scope.votes++
     }
 }])

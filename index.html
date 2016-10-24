@@ -60,30 +60,45 @@
 
     <div class="container">
         <div ng-show="showForm">
-        <form action="#" name="postForm" ng-submit="submitPostForm(postForm)">
-            <div class="form-group">
-                <label for="title">Title</label>
-                <input type="text" name="title" id="title" class="form-control" placeholder="Title" ng-model="post.title" ng-minlength=1 ng-required="true">
-            </div>
-            <div class="form-group">
-                <label for="author">Author</label>
-                <input type="text" name="author" id="author" class="form-control" placeholder="Author" ng-model="post.author" ng-minlength=1 ng-required="true">
-            </div>
-            <div class="form-group">
-                <label for="imageUrl">Image URL</label>
-                <input type="text" name="imageUrl" id="imageUrl" class="form-control" placeholder="Image URL" ng-model="post.imageUrl" ng-minlength=1 ng-required="true">
-            </div>
-            <div class="form-group">
-                <label for="description">Description</label>
-                <input type="text" name="description" id="description" class="form-control" placeholder="Description" ng-model="post.description" ng-minlength=1 ng-required="true">
-            </div>
-            <button type="submit" name="button" class="btn btn-default" ng-click="showForm = !showForm" ng-disabled="postForm.$invalid">Submit Post</button>
-        </form>
-        <!-- End nav section -->
+            <form action="#" name="postForm" ng-submit="submitPostForm(postForm)">
+                <div class="form-group" ng-class="{'has-error': postForm.title.$invalid && !postForm.title.$pristine, 'has-success': postForm.title.$valid}">
+                    <label for="title">Title</label>
+                    <input type="text" name="title" id="title" class="form-control" placeholder="Title" ng-model="post.title" ng-minlength=1 ng-required="true">
+                    <small class="help-block" ng-show="postForm.title.$error.minlength">Title is too short</small>
+                </div>
+                <div class="form-group" ng-class="{'has-error': postForm.author.$invalid && !postForm.author.$pristine, 'has-success': postForm.author.$valid}">
+                    <label for="author">Author</label>
+                    <input type="text" name="author" id="author" class="form-control" placeholder="Author" ng-model="post.author" ng-minlength=1 ng-required="true">
+                    <small class="help-block" ng-show="postForm.author.$error.minlength">Author name is too short</small>
+                </div>
+                <div class="form-group" ng-class="{'has-error': postForm.imageUrl.$invalid && !postForm.imageUrl.$pristine, 'has-success': postForm.imageUrl.$valid}">
+                    <label for="imageUrl">Image URL</label>
+                    <input type="text" name="imageUrl" id="imageUrl" class="form-control" placeholder="Image URL" ng-model="post.imageUrl" ng-minlength=1 ng-required="true">
+                    <small class="help-block" ng-show="postForm.imageurl.$error.minlength">Image URL is too short</small>
+                </div>
+                <div class="form-group" ng-class="{'has-error': postForm.description.$invalid && !postForm.description.$pristine, 'has-success': postForm.description.$valid}">
+                    <label for="description">Description</label>
+                    <input type="text" name="description" id="description" class="form-control" placeholder="Description" ng-model="post.description" ng-minlength=1 ng-required="true">
+                    <small class="help-block" ng-show="postForm.description.$error.minlength">Description is too short</small>
+                </div>
+                <button type="submit" name="button" class="btn btn-default" ng-click="showForm = !showForm" ng-disabled="postForm.$invalid">Submit Post</button>
+            </form>
+            <!-- End nav section -->
         </div>
         <!-- end ng-show div -->
         <h1>Current posts are:</h1>
         <div ng-repeat="post in posts">
+            <div class="media">
+                <div class="media-left">
+                    <a href="#">
+                        <img class="media-object" src="{{post.imageUrl}}" alt="...">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">{{post.title}} | <span class="glyphicon glyphicon-arrow-down" aria-hidden="true" ng-click="downVote()"></span><span class="glyphicon glyphicon-arrow-up" aria-hidden="true" ng-click="upVote()"></span><span ng-class="{plusVote: votes > 0, negativeVote: votes < 0}">{{votes}}</span></h4>
+                    <p>{{post.description}}</p>
+                </div>
+            </div>
             {{post}}
         </div>
 
