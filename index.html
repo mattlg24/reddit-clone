@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html ng-app="redditCloneApp">
+
+<head>
+    <!-- Bootstrap Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <!-- Bootstrap Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- Angular -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
+    <!-- local app.js -->
+    <script type="text/javascript" src="app.js"></script>
+    <!-- local css -->
+    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8">
+    <title>Reddit Clone</title>
+</head>
+
+<body ng-controller="MainController">
+
+    <!-- Begin Nav Section -->
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+                <a class="navbar-brand" href="#">Reddit Clone</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li ng-model="showForm" class=""><a href="#"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Submit Post<span class="sr-only">(current)</span></a></li>
+                    <form class="navbar-form navbar-left">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search">
+                        </div>
+                    </form>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Votes</a></li>
+                            <li><a href="#">Date</a></li>
+                            <li><a href="#">Title</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <div class="container">
+        <!-- <div ng-show="showForm"> -->
+            <form action="#" name="postForm" ng-submit="submitPostForm()">
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" name="title" id="title" class="form-control" placeholder="Title" ng-model="post.title" ng-required="true">
+                </div>
+                <div class="form-group">
+                    <label for="author">Author</label>
+                    <input type="text" name="author" id="author" class="form-control" placeholder="Author" ng-model="post.author" ng-required="true">
+                </div>
+                <div class="form-group">
+                    <label for="imageUrl">Image URL</label>
+                    <input type="text" name="imageUrl" id="imageUrl" class="form-control" placeholder="Image URL" ng-model="post.imageUrl" ng-required="true">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <input type="text" name="description" id="description" class="form-control" placeholder="Description" ng-model="post.description" ng-required="true">
+                </div>
+                <button type="submit" name="button" class="btn btn-default">Submit Post</button>
+            </form>
+            <!-- End nav section -->
+        <!-- </div> -->
+        <!-- end ng-show div -->
+
+
+    </div>
+    <!-- end container div -->
+</body>
+
+</html>
