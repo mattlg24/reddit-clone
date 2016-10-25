@@ -12,49 +12,54 @@ app.controller('MainController', ['$scope', '$log', function($scope, $log) {
         comments: []
     }, {
         id: 1,
-        title: 'christmad',
-        author: 'santa',
-        imageUrl: 'http://www.wikihow.com/images/e/ee/Colored-Intro-7.jpg',
-        description: 'hfui;aho; hfod;saij f;aj ofa jiof;joi;eafhe wao;i.',
+        title: 'Christmas',
+        author: 'Santa',
+        imageUrl: 'http://coloringkids.org/wp-content/uploads/santa-cartoon.jpg',
+        description: 'I like to bring presents to everyone because I\'m a jolly good fellow.',
         votes: 0,
         comments: []
     }]
+
     $scope.post = {}
+    $scope.commentForm = {};
+    $scope.post.comments = []
 
     function createNewId() {
         let newId = $scope.posts.length
+            // console.log('newid is', newId);
         return newId
     }
 
-    $scope.commentForm = {};
+    $scope.downVote = function(post) {
+        post.votes -= 1
+    }
+    $scope.upVote = function(post) {
+        // console.log('post', post);
+        post.votes += 1
+    }
 
     $scope.submitPostForm = function() {
         event.preventDefault()
             // console.log('post info', post);
         $scope.post.id = createNewId()
         $scope.post.votes = 0
-        $scope.post.downVote = function() {
-            this.votes -= 1
-        }
-        $scope.post.upVote = function() {
-            // console.log(this);
-            this.votes += 1
-        }
         $scope.posts.push($scope.post)
         $scope.post = ''
+        $scope.postForm.$setPristine()
         this.date = Date.now()
-        $scope.comments = 3
+        $scope.comments = 2
     }
 
     $scope.submitCommentForm = function(post) {
-        console.log('postid', post.id);
+        // console.log('post is', post);
+        // $log.info('all posts...............', $scope.posts)
+        event.preventDefault()
+            // console.log('postid', post.id);
         let id = post.id
-            // var id = //somehow pull the post id,this will be equal to the index of the posts array
-            // event.preventDefault()
         var newComment = angular.copy($scope.commentForm)
-        console.log('newComment is', newComment);
+            // console.log('newComment is', newComment);
         $scope.posts[id].comments.push(newComment)
-            // $scope.posts.comments = null
+        post.showCommentForm = false
     }
 
 }])
