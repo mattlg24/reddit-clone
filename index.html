@@ -131,7 +131,7 @@
 
                     <!-- Begin comment form -->
                     <div ng-show="post.showCommentForm">
-                        <form action="#" class="form-inline" name="test">
+                        <form action="#" class="form-inline" name="formForComments">
                             <div class="form-group">
                                 <label for="commentAuthor">Author</label>
                                 <input type="text" class="form-control" id="commentAuthor" placeholder="username" ng-model="commentForm.author" ng-required="true">
@@ -140,7 +140,7 @@
                                 <label for="commentText">Text</label>
                                 <input type="text" class="form-control" id="commentText" placeholder="comment text" ng-required="true" ng-model="commentForm.text">
                             </div>
-                            <button type="submit" class="btn btn-default" ng-click="submitCommentForm(post)" ng-disabled="test.$invalid">Add Comment</button>
+                            <button type="submit" class="btn btn-default" ng-click="submitCommentForm(post)" ng-disabled="formForComments.$invalid">Add Comment</button>
                         </form>
                     </div>
                     <!-- End comment form -->

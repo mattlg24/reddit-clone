@@ -69,19 +69,18 @@ app.controller('MainController', ['$scope', '$log', function($scope, $log) {
 
 
     $scope.submitCommentForm = function(post) {
-        console.log('view.posts.length is', $scope.view.posts.length);
-        for (var i = 0; i < $scope.view.posts.length; i++) {
-            let numComments = $scope.view.posts[i].comments.length
-            console.log('num comments is', numComments);
-        }
-        // console.log('post is', post);
+        console.log('post is', post);
         // $log.info('all posts...............', $scope.posts)
         event.preventDefault()
-        console.log('postid', post.id);
+            // console.log('postid', post.id);
         let id = post.id
         var newComment = angular.copy($scope.commentForm)
             // console.log('newComment is', newComment);
         $scope.view.posts[id].comments.push(newComment)
+
+        document.getElementById('commentAuthor').value = ''
+        document.getElementById('commentText').value = ''
+            // document.forms['formsForComments'].reset();
         post.showCommentForm = false
         this.commentSection = true
     }
