@@ -42,7 +42,7 @@
                     <li ng-click="showForm = !showForm" class=""><a href="#"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Submit Post<span class="sr-only">(current)</span></a></li>
                     <form class="navbar-form navbar-left">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search">
+                            <input type="text" class="form-control" placeholder="Search" ng-model="searchText">
                         </div>
                     </form>
                     <!-- <li class="dropdown">
@@ -103,7 +103,7 @@
 
         <!-- Begin post section -->
         <h1>Current posts are:</h1>
-        <div ng-repeat="post in view.posts | orderBy: orderVal">
+        <div ng-repeat="post in view.posts | orderBy: orderVal | filter:searchText">
             <div class="media">
                 <div class="media-left">
                     <a href="#">
