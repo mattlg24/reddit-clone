@@ -2,6 +2,8 @@
 <html ng-app="redditCloneApp">
 
 <head>
+    <!--momentjs cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.2/moment.min.js"></script>
     <!-- Bootstrap Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- jQuery -->
@@ -43,7 +45,7 @@
                             <input type="text" class="form-control" placeholder="Search">
                         </div>
                     </form>
-                        <!-- <li class="dropdown">
+                    <!-- <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort by {{sort}}<span class="caret"></span></a>
                             <ul class="dropdown-menu" ng-model="orderVal">
                                  <li><a value="votes">Votes</a></li>
@@ -53,18 +55,15 @@
                         </li> -->
                 </ul>
                 <div class="navbar-form navbar-left">
-                  <li class="dropdown">
-                  Sort By
-                    <select ng-model="orderVal">
+                    <li class="dropdown">
+                        Sort By
+                        <select ng-model="orderVal">
                       <option value="-votes">Votes</option>
                       <option value="-date">Date</option>
                       <option value="title">Title</option>
                     </select>
-                  </li>
+                    </li>
                 </div>
-
-
-
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -101,6 +100,7 @@
             <!-- End nav section -->
         </div>
         <!-- end ng-show div -->
+
         <!-- Begin post section -->
         <h1>Current posts are:</h1>
         <div ng-repeat="post in view.posts | orderBy: orderVal">
@@ -112,10 +112,23 @@
                 </div>
                 <div class="media-body">
                     <h4 class="media-heading">{{post.title}} | <span class="glyphicon glyphicon-arrow-down" aria-hidden="true" ng-click="downVote(post)"></span><span class="glyphicon glyphicon-arrow-up" aria-hidden="true" ng-click="upVote(post)"></span><span ng-class="{plusVote: post.votes > 0, negativeVote: post.votes < 0}">{{post.votes}}</span></h4>
+                    <p class="pull-right">By {{post.author}}</p>
+                    <br>
                     <p>{{post.description}}</p>
-                    <p>{{post.date | date: 'longDate'}} | <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-                        <ng-pluralize count="comments" when="{'1': '{{comments}} comment', 'other': '{{comments}} comments'}"></ng-pluralize> | <span ng-click="post.showCommentForm = !post.showCommentForm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Add comment</span>
+                    <p><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> {{post.momentDate}} | <span ng-click="commentSection = !commentSection"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+                        <ng-pluralize count="post.comments.length" when="{'1': '1 comment', 'other': '{} comments'}"></ng-pluralize>
+                        </span> | <span ng-click="post.showCommentForm = !post.showCommentForm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Add comment</span>
                     </p>
+                    <!-- Comment section -->
+                    <div ng-show="commentSection">
+                        <div ng-repeat="comment in post.comments">
+                            <p>
+                                <span class="commentAuthor">{{comment.author}}</span> - {{comment.text}}
+                            </p>
+                        </div>
+                    </div>
+                    <!-- End comment section -->
+
                     <!-- Begin comment form -->
                     <div ng-show="post.showCommentForm">
                         <form action="#" class="form-inline" name="test">
@@ -128,7 +141,6 @@
                                 <input type="text" class="form-control" id="commentText" placeholder="comment text" ng-required="true" ng-model="commentForm.text">
                             </div>
                             <button type="submit" class="btn btn-default" ng-click="submitCommentForm(post)" ng-disabled="test.$invalid">Add Comment</button>
-                            <!-- ng-click="showCommentForm = !showCommentForm" -->
                         </form>
                     </div>
                     <!-- End comment form -->

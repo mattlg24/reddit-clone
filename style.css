@@ -14,3 +14,7 @@
 .dropdown {
   list-style-type: none;
 }
+
+.commentAuthor {
+  font-weight: bold;
+}
