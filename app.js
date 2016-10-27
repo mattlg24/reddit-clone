@@ -37,7 +37,6 @@ app.controller('MainController', ['$scope', '$log', function($scope, $log) {
 
     $scope.post = {}
     $scope.commentForm = {};
-    // $scope.date = ''
 
     function createNewId() {
         let newId = $scope.view.posts.length
@@ -74,13 +73,10 @@ app.controller('MainController', ['$scope', '$log', function($scope, $log) {
         event.preventDefault()
             // console.log('postid', post.id);
         let id = post.id
-        var newComment = angular.copy($scope.commentForm)
+        var newComment = angular.copy(post.commentForm)
             // console.log('newComment is', newComment);
         $scope.view.posts[id].comments.push(newComment)
-
-        document.getElementById('commentAuthor').value = ''
-        document.getElementById('commentText').value = ''
-            // document.forms['formsForComments'].reset();
+        post.commentForm = {}
         post.showCommentForm = false
         this.commentSection = true
     }
