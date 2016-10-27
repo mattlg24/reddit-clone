@@ -104,8 +104,8 @@
         <!-- end ng-show div -->
 
         <!-- Begin post section -->
-        <h1>Current posts are:</h1>
-        <div ng-repeat="post in view.posts | orderBy: orderVal | filter:searchText" class="animated fadeInDown">
+        <!-- <h1>Current posts are:</h1> -->
+        <div ng-repeat="post in view.posts | orderBy: orderVal | filter:searchText" class="onePost">
             <div class="media">
                 <div class="media-left">
                     <a href="#">
@@ -148,7 +148,6 @@
                     <!-- End comment form -->
                 </div>
             </div>
-            <!-- {{post}} -->
         </div>
         <!-- End post section -->
 
