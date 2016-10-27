@@ -1,4 +1,4 @@
-const app = angular.module('redditCloneApp', [])
+const app = angular.module('redditCloneApp', ['ngAnimate'])
 
 app.controller('MainController', ['$scope', '$log', function($scope, $log) {
 
@@ -11,8 +11,8 @@ app.controller('MainController', ['$scope', '$log', function($scope, $log) {
         imageUrl: 'http://www.wikihow.com/images/e/ee/Colored-Intro-7.jpg',
         description: 'Spooky Scary Creepy Crawly. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
         votes: 1,
-        date: new Date('October 24, 2016'),
-        momentDate: moment().subtract(2, 'days').calendar(),
+        date: new Date('October 22, 2016'),
+        momentDate: moment().subtract(5, 'days').calendar(),
         comments: [{
             author: 'Ghost',
             text: 'You are scary'
@@ -32,6 +32,22 @@ app.controller('MainController', ['$scope', '$log', function($scope, $log) {
         }, {
             author: 'Blitzen',
             text: 'Rudolph is a ninkampoop'
+        }, ]
+    }, {
+        id: 2,
+        title: 'Thanksgiving',
+        author: 'Tom the Turkey',
+        imageUrl: 'http://www.clipartlord.com/wp-content/uploads/2015/01/turkey8.png',
+        description: 'I LOVE a good Thanksgiving meal. The food is always so delicious. I mean the GRAVY, the gravy is out of this world!',
+        votes: -2,
+        date: new Date('October 24, 2016'),
+        momentDate: moment().subtract(3, 'day').calendar(),
+        comments: [{
+            author: 'Santa',
+            text: 'You busy for Thanksgiving? How about coming up to the North Pole to be my guest of honor?'
+        }, {
+            author: 'Dracula',
+            text: 'Dibs eating Tom... I mean eating dinner with Tom'
         }]
     }]
 
